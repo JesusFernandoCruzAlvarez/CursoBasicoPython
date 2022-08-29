@@ -1,0 +1,42 @@
+"""hacer un programa que lea un archivo de texto que contiene en cada linea nombres de peliculas
+separados por comas, el programa determinará el porcentaje de similitud de la primera lista de 
+peliculas con respecto a las demas. el programa seleccionará la lista con la que tenga mayor afinidad
+el programa mostrará los nombres de las peliculas que estan en la lista con mayor afinidad y que no 
+estan en la primera lista"""
+print("+++ 1 ++++")
+datos=[]
+with open("peliculas.txt") as fname:
+	lineas=fname.readlines()
+	for linea in lineas:
+		datos.append(linea.strip('\n'))
+print(datos)
+print("+++")
+
+miriam=lineas[0]
+edith=lineas[1]
+anahi=lineas[2]
+print(miriam)
+print(edith)
+print(anahi)
+
+def  jaccard(grupo1, grupo2):
+	interseccion=len(set(grupo1).intersection(set(grupo2)))
+	union= len(set(grupo1).union(set(grupo2)))
+	return interseccion/union
+
+jaccard_amigos1=jaccard(miriam,edith)
+print("porcentaje de similitud entre Miriam y Edith: {:.2f}".format(jaccard_amigos1) )
+
+jaccard_amigos2=jaccard(miriam,anahi)
+print("porcentaje de similitud entre Miriam y Anahi: {:.2f}".format(jaccard_amigos2) )
+Cmiriam=set(miriam)
+CEdith=set(edith)
+Canahi=set(anahi)
+if (jaccard_amigos1>jaccard_amigos2):
+	print("Edith tiene la lista con mayor similitud")
+	resta=Cedith-Cmiriam
+	print ("y las peliculas que no estan en la lista de miriam son: ",resta)
+else:
+	print("Anahi tiene la lista con mayor similitud")
+	resta=Cedith-Cmiriam
+	print ("y las peliculas que no estan en la lista de miriam son: ",resta)

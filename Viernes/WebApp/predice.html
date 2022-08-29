@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <link rel="icon" href="favicon.ico">
+    <title> Sistema para predecir el ahorro usan Machine Learning </title>    
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/justified-nav.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>   
+    <script> 
+        $(document).ready(function(){
+          $('#formularioaenviar').submit(function(ev){
+            $.ajax({
+              type:$('#formularioaenviar').attr('method'),
+              url:$('#formularioaenviar').attr('action'),
+              data:$('#formularioaenviar').serialize(),
+              datatype:'json',
+              success:function(data){
+                $('#resultado').html(data.ahorro)
+              }
+            })
+            ev.preventDefault();
+          })
+        })
+    </script>>
+  </head>
+
+  <body>
+    <div class="container">
+      <!------------------- Header ---------------------->
+      <header class="masthead">
+        <h1>Predictors </h1>
+        <!----------------- Barra de navegación (Menú) -->
+        
+      </header>
+      <!-------------------- Fin del Header ---------------->
+
+      <h3 class="text-muted"> Sistema para predecir el ahorro </h3>
+      <form id = "formularioaenviar" action="http://localhost:8000/predecir" method="get" >
+        <div class="form-row">
+          <div class="col">
+            <div class="form-group">              
+              <input type="text" id="ingreso" name="ingreso" class="form-control" placeholder="indique el ingreso">
+            </div>
+          </div>
+          
+        </div>
+  
+        <div class="form-row">
+          <a href="#" class="col-sm-6 btn btn-dark form-control"> Cancelar </a>
+          <button  id = "btn-submit" class="col-sm-6 btn btn-danger form-control">
+            Enviar
+          </button>
+         
+        </div>
+             <h4>este individuo puede que tenga ahorrado $ <span id="resultado"></span>
+      </form>
+   
+     
+
+      <!----------------------------- Pie de página  ---------->
+      <footer class="footer">
+        <p>&copy;  2020 </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+
+    <!------------------------- Bootstrap core JavaScript ---------->
+    <script src="js/jquery.js"></script>
+    <script>window.jQuery || document.write('<script src="js.jquery.min.js"><\/script>')</script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
+
